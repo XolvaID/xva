@@ -1,0 +1,63 @@
+#!/bin/bash
+DF='\e[39m'
+Bold='\e[1m'
+Blink='\e[5m'
+yell='\e[33m'
+red='\e[31m'
+green='\e[32m'
+blue='\e[34m'
+PURPLE='\e[35m'
+cyan='\e[36m'
+Lred='\e[91m'
+Lgreen='\e[92m'
+Lyellow='\e[93m'
+NC='\e[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+LIGHT='\033[0;37m'
+grenbo="\e[92;1m"
+clear
+trap ' ' 2 20
+mekmem=$(cat /etc/adminbot/var.txt)
+if [[ "${mekmem}" == "" ]]; then
+echo -e "${Lyellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${Lred}              Warning Need Bot Token ! ${NC}"
+echo -e "${Lyellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${Lyellow}${Bold} Pleace Create Bot In @BotFather And Check Your ID ${NC} "
+echo -e "                  ${red}${Bold} TELEGRAM NOW ${NC}"
+echo -e "${Lyellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+read -rp " Bot Token Telegram  : " -e toket
+read -rp " Chat ID Telegram    : " -e id
+read -rp " Your Domain         : " -e domen
+echo BOT_TOKEN='"'${toket}'"' >> /etc/adminbot/var.txt
+echo ADMIN='"'${id}'"' >>/etc/adminbot/var.txt
+echo DOMAIN='"'${domen}'"' >> /etc/adminbot/var.txt
+cat > /usr/bin/runbot << EOF
+#!/bin/bash
+cd /etc
+python3.7 -m adminbot
+EOF
+chmod +x /usr/bin/runbot
+cat >/etc/systemd/system/adminbot.service << EOF
+[Unit]
+Description=xolpanel
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/bin/
+ExecStart=runbot
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload &> /dev/null
+systemctl restart adminbot &> /dev/null
+systemctl enable adminbot &> /dev/null
+systemctl restart cron &> /dev/null
+clear
+echo -e " Pleace Wait kon...!"
+sleep 3
+trap
+clear
+fi

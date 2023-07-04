@@ -93,7 +93,7 @@ clear
 # Valid Script
 VALIDITY () {
     today=`date -d "0 days" +"%Y-%m-%d"`
-    Exp1=$(curl https://github.com/XolvaID/ip | grep $MYIP | awk '{print $4}')
+    Exp1=$(curl https://raw.githubusercontent.com/XolvaID/ip/main/ip | grep $MYIP | awk '{print $4}')
     if [[ $today < $Exp1 ]]; then
     echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
 	VERSIONSC
@@ -103,7 +103,7 @@ VALIDITY () {
     exit 0
 fi
 }
-IZIN=$(curl https://github.com/XolvaID/ip | awk '{print $5}' | grep $MYIP)
+IZIN=$(curl https://raw.githubusercontent.com/XolvaID/ip/main/ip | awk '{print $5}' | grep $MYIP)
 if [ $MYIP = $IZIN ]; then
 echo -e "\e[32mPERMISSION ACCEPT...\e[0m"
 sleep 3

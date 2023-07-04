@@ -1,0 +1,93 @@
+#!/bin/bash
+clear
+red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+clear
+#IZIN SCRIPT
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo -e "\e[32mloading...\e[0m"
+clear
+# Valid Script
+VALIDITY () {
+    today=`date -d "0 days" +"%Y-%m-%d"`
+    Exp1=$(curl https://raw.githubusercontent.com/XolvaID/ip/main/ip | grep $MYIP | awk '{print $4}')
+    if [[ $today < $Exp1 ]]; then
+    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
+    else
+echo -e "${Lyellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo -e "${Lred}                PERMISSION DENIED ! ${NC}"
+echo -e "${Lyellow}     Your VPS ${NC}( ${green}$MYIP${NC} ) ${Lyellow}Has been Banned "
+echo -e "         Buy access permissions for scripts "
+echo -e "                 Contact Admin :"
+echo -e "             ${green}Telegram t.me/Andresakti "
+echo -e "             WhatsApp wa.me/081282840785"
+echo -e "${Lyellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    exit 0
+fi
+}
+IZIN=$(curl https://raw.githubusercontent.com/XolvaID/ip/main/ip | awk '{print $5}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m" >/dev/null 2>&1
+VALIDITY
+else
+echo -e "\e[31mPermission Denied!\e[0m";
+echo -e "\e[31mPlease buy script first\e[0m"
+exit 0
+fi
+echo -e "\e[32mloading...\e[0m"
+clear
+IP=$(curl -sS ipv4.icanhazip.com)
+ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city )
+domain=$(cat /etc/xray/domain)
+clear
+echo -e "\033[1;93m====================\033[0m"
+echo -e " SSH Ovpn Account           "
+echo -e "\033[1;93m====================\033[0m"
+read -p " Username : " Login
+read -p " Password : " Pass
+read -p " Expired (Days): " masaaktif
+clear
+tgl=$(date -d "$masaaktif days" +"%d")
+bln=$(date -d "$masaaktif days" +"%b")
+thn=$(date -d "$masaaktif days" +"%Y")
+expe="$tgl $bln, $thn"
+tgl2=$(date +"%d")
+bln2=$(date +"%b")
+thn2=$(date +"%Y")
+tnggl="$tgl2 $bln2, $thn2"
+useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
+expi="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
+echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
+hariini=`date -d "0 days" +"%Y-%m-%d"`
+expi=`date -d "$masaaktif days" +"%Y-%m-%d"`
+echo "### ${Login} ${Pass} ${exp}" >>/etc/ssh/.ssh.db
+
+
+echo ""
+echo -e "\033[1;93m====================\033[0m"
+echo -e " SSH OVPN Account    "
+echo -e "\033[1;93m====================\033[0m"
+echo -e "Username         : $Login"
+echo -e "Password         : $Pass"
+echo -e "IP               : $IP"
+echo -e "Host             : $domain"
+#echo -e "Host Slowdns     : ${NS}"
+#echo -e "Pub Key          : ${PUB}"
+#echo -e "Location         : $CITY"
+echo -e "Port OpenSSH     : 443, 80, 22"
+#echo -e "Port DNS         : 443, 53 ,22 "
+echo -e "Port SSH UDP     : 1-65535"
+echo -e "Port Dropbear    : 443, 109"
+echo -e "Port SSH WS      : 80, 8080, 8081-9999"
+echo -e "Port SSH SSL WS  : 443"
+echo -e "Port SSL/TLS     : 400-900"
+echo -e "Port OVPN WS SSL : 443"
+echo -e "Port OVPN SSL    : 443"
+echo -e "Port OVPN TCP    : 443, 1194"
+echo -e "Port OVPN UDP    : 2200"
+echo -e "BadVPN UDP       : 7100, 7300, 7300"
+echo -e "\033[1;93m====================\033[0m"
+echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
+echo -e "\033[1;93m====================\033[0m"
+echo -e "Berakhir Pada    : $expe"
+echo -e "\033[1;93m====================\033[0m"
