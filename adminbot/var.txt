@@ -1,0 +1,3 @@
+BOT_TOKEN="toket" # get this value from @BotFather, required
+ADMIN="sex" # your telegram ID, required
+DOMAIN="domen" # your VPS domain, required

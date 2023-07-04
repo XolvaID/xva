@@ -1,0 +1,36 @@
+    ┌─────────────────────────────────────────────────────┐
+    │       >>> Service & Port                            │
+    │   - Open SSH                : 443, 80, 22           │
+    │   - Dropbear                : 443, 109, 143         │
+    │   - Dropbear Websocket      : 443, 109              │
+    │   - SSH Websocket SSL       : 443                   │
+    │   - SSH Websocket           : 80                    │
+    │   - OpenVPN SSL             : 443                   │
+    │   - OpenVPN Websocket SSL   : 443                   │
+    │   - OpenVPN TCP             : 443, 1194             │
+    │   - OpenVPN UDP             : 2200                  │
+    │   - Nginx Webserver         : 443, 80, 81           │
+    │   - Haproxy Loadbalancer    : 443, 80               │
+    │   - OpenVPN Websocket SSL   : 443                   │
+    │   - XRAY Vmess TLS          : 443                   │
+    │   - XRAY Vmess gRPC         : 443                   │
+    │   - XRAY Vmess None TLS     : 80                    │
+    │   - XRAY Vless TLS          : 443                   │
+    │   - XRAY Vless gRPC         : 443                   │
+    │   - XRAY Vless None TLS     : 80                    │
+    │   - Trojan gRPC             : 443                   │
+    │   - Trojan WS               : 443                   │
+    │   - Shadowsocks WS          : 443                   │
+    │   - Shadowsocks gRPC        : 443                   │
+    │                                                     │
+    │      >>> Server Information & Other Features        │
+    │   - Timezone                : Asia/Jakarta (GMT +7) │
+    │   - Autoreboot On           : 5:00 AM GMT +7        │
+    │   - Auto Delete Expired Account                     │
+    │   - Fully automatic script                          │
+    │   - VPS settings                                    │
+    │   - Admin Control                                   │
+    │   - Restore Data                                    │
+    │   - Full Orders For Various Services                │
+    └─────────────────────────────────────────────────────┘
+
